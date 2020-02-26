@@ -1,0 +1,38 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'org.jetbrains.dokka'
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+sourceCompatibility = "6"
+targetCompatibility = "6"
+
+publish {
+    userOrg = 'iamkatrechko'
+    repoName = "public-maven-repository"
+    groupId = 'com.github.iamkatrechko'
+    artifactId = 'extensions.kotlin'
+    publishVersion = '1.0'
+    desc = 'Набор extension-функций для kotlin и java классов'
+    licences = ['Apache-2.0']
+    website = 'https://github.com/iamkatrechko/extensions.kotlin'
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/dokkaJavadoc"
+}
+
+task packageJavadoc(type: Jar, dependsOn: 'dokkaJavadoc') {
+    from "$buildDir/dokkaJavadoc"
+    classifier = 'javadoc'
+}
+
+artifacts {
+    archives packageJavadoc
+}
