@@ -10,3 +10,7 @@ val Any.TAG: String
             simpleName
         }
     }
+
+/** Функция безопасного приведения объекта к типу [T] */
+inline fun <reified T> Any?.asGeneric(): T? =
+    this as? T
