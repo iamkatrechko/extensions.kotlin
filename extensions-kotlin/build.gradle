@@ -17,7 +17,7 @@ publish {
     repoName = "public-maven-repository"
     groupId = 'com.github.iamkatrechko'
     artifactId = 'extensions.kotlin'
-    publishVersion = '1.0'
+    publishVersion = '1.1'
     desc = 'Набор extension-функций для kotlin и java классов'
     licences = ['Apache-2.0']
     website = 'https://github.com/iamkatrechko/extensions.kotlin'
